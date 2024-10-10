@@ -1,0 +1,57 @@
+// 241RDB228 Edgars Gerulis
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        float A[] = new float[40];
+        int K, i;
+        float C;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("241RDB228 Edgars Gerulis");
+        System.out.println("17. variants");
+
+        System.out.print("K=");
+        if (sc.hasNextInt())
+            K = sc.nextInt();
+        else {
+            System.out.println("input-output error");
+            sc.close();
+            return;
+        }
+        sc.close();
+
+        System.out.println("result:");
+
+        if (K<=0) {
+            Random r = new Random();
+            for (i=0; i<40; i++)
+                A[i] = r.nextFloat()*200-100;
+        }
+        else {
+            for (i = 0; i < 40; i++)
+                A[i] = (i + 1) * K / (K + 1.0f);
+        }
+        System.out.println("A:");
+        for (i=0; i<40; i++) {
+            System.out.printf("%.2f\t", A[i]);
+            if (i==19) System.out.println();
+        }
+
+        for (i=0; i<20; i++) {
+            C = A[i];
+            A[i] = A[39-i];
+            A[39-i] = C;
+        }
+
+        System.out.println("\nA:");
+        for (i=0; i<40; i++) {
+            System.out.printf("%.2f\t", A[i]);
+            if (i==19) System.out.println();
+        }
+    }
+
+}
